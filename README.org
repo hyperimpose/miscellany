@@ -1,0 +1,21 @@
+* miscellany
+
+This is a collection of programming libraries used by various
+hyperimpose projects. Each library is standalone with no external
+dependencies (besides OTP).
+
+Each sub-directory contains a single project. Projects are independent
+from each other.
+
+For a quick overview of each project, visit: https://hyperimpose.org/miscellany
+
+** Contributing
+
+These libraries are for internal use only. Feature requests will not
+be accepted, unless they are required by other hyperimpose projects.
+Bugfixes and issue reports are welcomed.
+
+** Licensing
+
+Each project has its own licensing terms. Details on the license used can be found
+in the project's README.org and COPYING files.

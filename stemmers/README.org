@@ -1,0 +1,31 @@
+* stemmers
+
+This library implements stemming algorithms for use in NLP tasks.
+
+#+BEGIN_QUOTE
+Stemming is the process of reducing inflected (or sometimes derived) words
+to their word stem, base or root form—generally a written word form.
+
+- [[https://en.wikipedia.org/wiki/Stemming][wikipedia.org: Stemming]]
+#+END_QUOTE
+
+The following algorithms are implemented:
+- Porter :: https://tartarus.org/martin/PorterStemmer/
+
+** Build
+
+Polycache can be built using GNU Make (other make implementations may work).
+
+To built the application run:
+#+BEGIN_SRC bash
+make
+#+END_SRC
+
+This will create an ~/ebin~ directory that contains the compiled code.
+
+~make clean~ will delete any build artifacts.
+
+** License
+
+bstemmers is licensed under the [[https://spdx.org/licenses/BSD-3-Clause.html][BSD 3-Clause "New" or "Revised" License]].
+A copy of this license is included in the file [[./COPYING][COPYING]].

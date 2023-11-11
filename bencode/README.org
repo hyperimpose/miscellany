@@ -1,0 +1,43 @@
+* bencode
+
+An erlang implementation of Bittorrent's bencode format. See: http://bittorrent.org/beps/bep_0003.html
+  
+** Notes and Warnings
+
+- There is no depth limit.
+- It does not provide useful error messages for invalid input.
+
+** API Usage
+
+There are two functions exported by ~bencode~: decode/1 and encode/1.
+
+#+BEGIN_SRC erlang
+  %% Encode an erlang term:
+  %%
+  %% This function will return the following bencoded binary:
+  %% <<"d4:testi123ee">>
+  bencode:encode(#{<<"test" => 123>>}).
+
+  %% Decode an erlang term:
+  %%
+  %% This function will return an erlang dictionary:
+  %% #{<<"test" => 123>>}
+  bencode:decode(<<"d4:testi123ee">>).
+
+  %% See the next section for the supported terms and their equivalents.
+#+END_SRC
+
+** Term Mapping
+
+The bencoded values map to Erlang terms as follows:
+- Dictionaries <-> Maps #{}  (If there are duplicate keys the last one is kept)
+- Lists        <-> Lists []  (Including strings/iolists etc.)
+- Integers     <-> Integers
+- Strings      <-> Binaries
+
+Atoms or other terms are not supported.
+
+** License
+
+This implementation of bencode is licensed under the [[https://spdx.org/licenses/BSD-3-Clause.html][BSD 3-Clause "New" or "Revised" License]].
+A copy of this license is included in the file [[./COPYING][COPYING]].

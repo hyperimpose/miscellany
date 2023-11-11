@@ -1,0 +1,13 @@
+%%%-------------------------------------------------------------------
+%%% @author drastik <derezzed@protonmail.com>
+%%% @copyright (C) 2023 hyperimpose.org
+%%% SPDX-License-Identifier: BSD-3-Clause
+%%%
+%%% Created: 4 Nov 2023 by drastik <derezzed@protonmail.com>
+%%%-------------------------------------------------------------------
+
+{application, stemmers,
+ [{description, "Stemming algorithms"},
+  {vsn, "=version="},
+  {modules, [stemmers, stemmers_porter]},
+  {applications, [kernel, stdlib]}]}.

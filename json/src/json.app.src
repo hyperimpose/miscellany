@@ -1,0 +1,14 @@
+%%%-------------------------------------------------------------------
+%%% @author drastik <derezzed@protonmail.com>
+%%% @copyright (C) 2020, 2023 hyperimpose.org
+%%% SPDX-License-Identifier: BSD-3-Clause
+%%%
+%%% Created: 7 Jul 2020 by drastik <derezzed@protonmail.com>
+%%%-------------------------------------------------------------------
+
+{application, json,
+ [{description, "JSON Parser"},
+  {vsn, "=version="},
+  {modules, [djson]},
+  {registered, []},
+  {applications, [kernel, stdlib]}]}.

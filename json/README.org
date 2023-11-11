@@ -1,0 +1,97 @@
+* json
+
+Parse JSON formatted text conforming to the RFC 8259 standard.
+
+- Written in Erlang. Developed on Erlang/OTP 23.
+- No external dependencies. Just a single Erlang module.
+
+** To do
+
+- This should be rewritten in a tail recursive way, which will provide
+  a significant performance improvement.
+  
+** Notes and Warnings
+
+- The parser is UTF-8 compatible only.
+- The UTF-8 byte order mark is not ignored.
+- *There is no depth limit.*
+- It does not provide useful error messages for invalid input.
+
+** API Usage
+
+There are two functions exported by djson: decode/1 and get/2.
+
+#+BEGIN_SRC erlang
+%% Given the following JSON text: {"test": [1, 2, 3, 4, 5]}
+
+%% We can start with the following binary:
+J = <<"{\"test\": [1, 2, 3, 4, 5]}">>,
+
+%% To fully decode the JSON above we call:
+djson:decode(J),
+
+%% This function will return the following erlang term:
+%% #{<<"test">> => [1, 2, 3, 4, 5]}.
+
+%% See below for the exact coversions done.
+
+%% The second function provided is able to extract specific values
+%% from the JSON document without fully decoding it. In fact, decoding
+%% and allocations only happen for the requested value.
+
+%% Let's say we only want to decode the list:
+djson:get([<<"test">>], J)
+
+%% This will return: {ok, [1, 2, 3, 4, 5]}
+
+%% If we only wanted a specific value we could add the index of the
+%% item in the list:
+djson:get([<<"test">>, 4], J)  %% This will return {ok, 4}
+#+END_SRC
+
+*decode/1*: This function always returns the decoded JSON value. If
+the JSON text given is erroneous it will throw the exception:
+={invalid, Pos}=.  `Pos' is the index of the character that triggered
+the exception.
+
+*get/2*: This one will return ={ok, Term}= on success. It will return
+={error, Pos}= if the requested `Path' was not found. Like decode/2,
+it will throw ={invalid, Pos}= if the JSON text given is invalid (,but
+only if the error is before or during the requested path).
+
+_Check src/djson.erl for more documentation on the API._
+
+** Decoded Terms
+
+The JSON values are converted to Erlang terms as follows:
+- Objects {} -> Maps #{}  (If there are duplicate JSON objects the last one is kept)
+- Arrays  [] -> Lists []
+- Numbers    -> Integers or Floats
+- Strings    -> Binaries
+- Booleans   -> Atoms: true | false
+- Null       -> Atom: null
+
+** get/2 Explained
+
+This function will essentially avoid all unnecessary allocations/decoding
+by skipping the JSON text until the specifiedpath is found. This allows
+for faster and efficient processing of big JSON documents and it also has
+the effect of allowing processing of broken/invalid JSON so long as the
+issue did not occur before the desired object.
+
+** License
+
+This implementation of json is licensed under the [[https://spdx.org/licenses/BSD-3-Clause.html][BSD 3-Clause "New" or "Revised" License]].
+A copy of this license is included in the file [[./COPYING][COPYING]].
+
+** Notes and decisions
+
+*On ignoring the Byte Order Mark*
+
+The RFC 8259 on section 8.1 specifies that ``Implementations MUST NOT
+add a byte order mark (U+FEFF) to the beginning of
+networked-transmitted JSON text.''. It is pretty clear that any such
+text violates the standard and this parser will refuse to parse it.
+
+In case you do encounter such text you may explicitly parse the BOM
+yourself and pass the remaining text to the parser.
