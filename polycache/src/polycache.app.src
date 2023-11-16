@@ -11,4 +11,5 @@
   {vsn, "=version="},
   {modules, [polycache_app, polycache_sup, polycache]},
   {registered, [polycache_sup, polycache]},
+  {mod, {polycache_app, []}},
   {applications, [kernel, stdlib]}]}.
