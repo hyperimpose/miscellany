@@ -19,7 +19,7 @@
 %% API
 %%====================================================================
 
-decode(Input) -> d(Input, []).
+decode(Input) -> d(iolist_to_binary(Input), []).
 
 encode(Input) -> iolist_to_binary(e(Input)).
 
