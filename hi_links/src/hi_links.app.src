@@ -1,0 +1,13 @@
+%%%-------------------------------------------------------------------
+%%% @author drastik <derezzed@protonmail.com>
+%%% @copyright (C) 2024 hyperimpose.org
+%%% SPDX-License-Identifier: BSD-3-Clause
+%%%
+%%% Created: 10 Feb 2024 by drastik <derezzed@protonmail.com>
+%%%-------------------------------------------------------------------
+
+{application, hi_links,
+ [{description, "Tools for URIs and IRIs"},
+  {vsn, "=version="},
+  {modules, [hi_iri, hi_uri]},
+  {applications, [kernel, stdlib]}]}.
