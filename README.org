@@ -7,8 +7,6 @@ dependencies (besides OTP).
 Each sub-directory contains a single project. Projects are independent
 from each other.
 
-For a quick overview of each project, visit: https://hyperimpose.org/miscellany
-
 ** Contributing
 
 These libraries are for internal use only. Feature requests will not

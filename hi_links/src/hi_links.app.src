@@ -8,6 +8,6 @@
 
 {application, hi_links,
  [{description, "Tools for URIs and IRIs"},
-  {vsn, "=version="},
+  {vsn, semver},
   {modules, [hi_iri, hi_uri]},
   {applications, [kernel, stdlib]}]}.

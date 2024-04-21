@@ -4,19 +4,14 @@ An Erlang/OTP application for extracting links from text.
 Supports RFC 3986 URIs and RFC 3987 IRIs.
 
 ** Build
-Polycache can be built using GNU Make (other make implementations may work).
 
-To built the application run:
-#+BEGIN_SRC bash
-make
+This library is built using rebar3. You can include it in your projects as a dependency in rebar.config:
+#+BEGIN_SRC erlang
+  {deps, [%% ... Other dependencies
+         {hi_links, {git, "https://github.com/hyperimpose/miscellany.git", {branch, "master"}, "hi_links"}}]}.
 #+END_SRC
 
-This will create an ~/ebin~ directory that contains the compiled code.
-
-To remove all build artifacts run:
-#+BEGIN_SRC bash
-make clean
-#+END_SRC
+You can also quickly compile and run the an Erlang shell with the library by running: ~rebar3 shell~
 
 ** API Usage
 There are two modules available:
@@ -27,7 +22,7 @@ Both of those modules export a single function: ~find/1~.
 
 #+BEGIN_SRC erlang
 %% Given the following string:
-S = "Visit hyperimpose.org to find more programs".
+S = "Visit https://hyperimpose.org to find more programs".
 
 %% We can extract the link with:
 {ok, Links} = hi_iri:find(S),
