@@ -11,7 +11,7 @@ This library is built using rebar3. You can include it in your projects as a dep
          {hi_links, {git, "https://github.com/hyperimpose/miscellany.git", {branch, "master"}, "hi_links"}}]}.
 #+END_SRC
 
-You can also quickly compile and run the an Erlang shell with the library by running: ~rebar3 shell~
+You can also quickly compile the library and start an Erlang shell for testing with: ~rebar3 shell~
 
 ** API Usage
 There are two modules available:
