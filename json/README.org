@@ -17,6 +17,16 @@ Parse JSON formatted text conforming to the RFC 8259 standard.
 - *There is no depth limit.*
 - It does not provide useful error messages for invalid input.
 
+** rebar3
+
+You can include it in your projects as a dependency in rebar.config:
+#+BEGIN_SRC erlang
+  {deps, [%% ... Other dependencies
+         {json, {git_subdir, "https://github.com/hyperimpose/miscellany.git", {branch, "master"}, "json"}}]}.
+#+END_SRC
+
+You can also quickly compile the library and start an Erlang shell for testing with: ~rebar3 shell~
+
 ** API Usage
 
 There are two functions exported by djson: decode/1 and get/2.
